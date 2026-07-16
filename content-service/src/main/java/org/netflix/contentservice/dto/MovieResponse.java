@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import org.netflix.contentservice.model.Genre;
 import org.netflix.contentservice.model.VideoStatus;
 
+import java.time.LocalDateTime;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,5 +26,5 @@ public class MovieResponse {
     private String videoKey;
     private String hlsUrl;
     private VideoStatus videoStatus;
-
+    private LocalDateTime createdAt;
 }

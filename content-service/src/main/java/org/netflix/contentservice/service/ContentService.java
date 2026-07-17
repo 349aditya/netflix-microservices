@@ -69,6 +69,12 @@ public class ContentService {
                 .collect(Collectors.toList());
     }
 
+    public List<MovieResponse> searchMovies(String title) {
+        return movieRepository.findByTitleContainingIgnoreCase(title)
+                .stream()
+                .map(this::mapToResponse)
+                .collect(Collectors.toList());
+    }
     private MovieResponse mapToResponse(Movie movie) {
         MovieResponse response = new MovieResponse();
         response.setId(movie.getId());

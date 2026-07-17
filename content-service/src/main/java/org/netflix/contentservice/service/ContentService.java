@@ -75,6 +75,19 @@ public class ContentService {
                 .map(this::mapToResponse)
                 .collect(Collectors.toList());
     }
+
+    public void updateVideoKey(String movieId, String videoKey) {
+        log.info("Updating videoKey for movie: {}", movieId);
+
+        Movie movie = movieRepository.findById(movieId)
+                .orElseThrow(() -> new RuntimeException("Movie not Found: " + movieId));
+
+        movie.setVideoKey(videoKey);
+        movie.setVideoStatus(VideoStatus.UPLOADED);
+
+        movieRepository.save(movie);
+    }
+
     private MovieResponse mapToResponse(Movie movie) {
         MovieResponse response = new MovieResponse();
         response.setId(movie.getId());
